@@ -108,14 +108,15 @@ jobs:
      needs: build_project_and_sonar_scan
      steps:
      - uses: actions/checkout@v4
-     - uses: actions/download-artifact@v4
-       with: 
-         name: app-jar
-         path: app
      - name: prepare jar for docker
        run: |
         mkdir -p target
         cp app/*.jar target/app.jar
+     - uses: actions/download-artifact@v4
+       with: 
+         name: app-jar
+         path: app
+     
 
 
      - name: Login to Docker Hub
